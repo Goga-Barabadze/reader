@@ -3468,7 +3468,6 @@ class AnnotationEditor {
     altText.className = "altText";
     const msg = await AnnotationEditor._l10nPromise.get("editor_alt_text_button_label");
     altText.textContent = msg;
-    altText.setAttribute("aria-label", msg);
     altText.tabIndex = "0";
     altText.addEventListener("contextmenu", _display_utils.noContextMenu);
     altText.addEventListener("pointerdown", event => event.stopPropagation());
@@ -3502,7 +3501,6 @@ class AnnotationEditor {
       return;
     }
     AnnotationEditor._l10nPromise.get("editor_alt_text_edit_button_label").then(msg => {
-      button.setAttribute("aria-label", msg);
     });
     let tooltip = this.#altTextTooltip;
     if (!tooltip) {
@@ -13693,7 +13691,6 @@ class FreeTextEditor extends _editor.AnnotationEditor {
     this.editorDiv.className = "internal";
     this.editorDiv.setAttribute("id", this.#editorDivId);
     this.enableEditing();
-    _editor.AnnotationEditor._l10nPromise.get("editor_free_text2_aria_label").then(msg => this.editorDiv?.setAttribute("aria-label", msg));
     _editor.AnnotationEditor._l10nPromise.get("free_text2_default_content").then(msg => this.editorDiv?.setAttribute("default-content", msg));
     this.editorDiv.contentEditable = true;
     const {
@@ -17117,7 +17114,6 @@ class InkEditor extends _editor.AnnotationEditor {
     this.canvas = document.createElement("canvas");
     this.canvas.width = this.canvas.height = 0;
     this.canvas.className = "inkEditorCanvas";
-    _editor.AnnotationEditor._l10nPromise.get("editor_ink_canvas_aria_label").then(msg => this.canvas?.setAttribute("aria-label", msg));
     this.div.append(this.canvas);
     this.ctx = this.canvas.getContext("2d");
   }
@@ -17143,7 +17139,6 @@ class InkEditor extends _editor.AnnotationEditor {
       baseY = this.y;
     }
     super.render();
-    _editor.AnnotationEditor._l10nPromise.get("editor_ink2_aria_label").then(msg => this.div?.setAttribute("aria-label", msg));
     const [x, y, w, h] = this.#getInitialBBox();
     this.setAt(x, y, 0, 0);
     this.setDims(w, h);

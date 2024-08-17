@@ -47602,7 +47602,6 @@ class CheckButton extends _xfa_object.XFAObject {
         checked,
         xfaOn: exportedValue.on,
         xfaOff: exportedValue.off,
-        "aria-label": ariaLabel(field),
         "aria-required": false
       }
     };
@@ -47690,7 +47689,6 @@ class ChoiceList extends _xfa_object.XFAObject {
       fieldId: field[_symbol_utils.$uid],
       dataId: field[_symbol_utils.$data]?.[_symbol_utils.$uid] || field[_symbol_utils.$uid],
       style,
-      "aria-label": ariaLabel(field),
       "aria-required": false
     };
     if (isRequired(field)) {
@@ -47875,7 +47873,6 @@ class DateTimeEdit extends _xfa_object.XFAObject {
         dataId: field[_symbol_utils.$data]?.[_symbol_utils.$uid] || field[_symbol_utils.$uid],
         class: ["xfaTextfield"],
         style,
-        "aria-label": ariaLabel(field),
         "aria-required": false
       }
     };
@@ -49471,7 +49468,6 @@ class NumericEdit extends _xfa_object.XFAObject {
         dataId: field[_symbol_utils.$data]?.[_symbol_utils.$uid] || field[_symbol_utils.$uid],
         class: ["xfaTextfield"],
         style,
-        "aria-label": ariaLabel(field),
         "aria-required": false
       }
     };
@@ -50947,7 +50943,6 @@ class TextEdit extends _xfa_object.XFAObject {
           fieldId: field[_symbol_utils.$uid],
           class: ["xfaTextfield"],
           style,
-          "aria-label": ariaLabel(field),
           "aria-required": false
         }
       };
@@ -50960,7 +50955,6 @@ class TextEdit extends _xfa_object.XFAObject {
           fieldId: field[_symbol_utils.$uid],
           class: ["xfaTextfield"],
           style,
-          "aria-label": ariaLabel(field),
           "aria-required": false
         }
       };

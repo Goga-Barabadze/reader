@@ -1,7 +1,6 @@
 const createMenuItemRadioGroup = (label, arr, onclick) => {
     const group = document.createElement('ul')
     group.setAttribute('role', 'group')
-    group.setAttribute('aria-label', label)
     const map = new Map()
     const select = value => {
         onclick(value)
