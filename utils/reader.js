@@ -1,11 +1,7 @@
 import './view.js'
-import { createTOCView } from './ui/tree.js'
-import { createMenu } from './ui/menu.js'
+import { createTOCView } from '../ui/tree.js'
+import { createMenu } from '../ui/menu.js'
 import { Overlayer } from './overlayer.js'
-
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js", { scope: "./" })
-}
 
 const isZip = async file => {
     const arr = new Uint8Array(await file.slice(0, 4).arrayBuffer())
@@ -21,7 +17,7 @@ const isPDF = async file => {
 
 const makeZipLoader = async file => {
     const { configure, ZipReader, BlobReader, TextWriter, BlobWriter } =
-        await import('./vendor/zip.js')
+        await import('../vendor/zip.js')
     configure({ useWebWorkers: false })
     const reader = new ZipReader(new BlobReader(file))
     const entries = await reader.getEntries()
@@ -98,7 +94,7 @@ const getView = async file => {
     else {
         const { isMOBI, MOBI } = await import('./mobi.js')
         if (await isMOBI(file)) {
-            const fflate = await import('./vendor/fflate.js')
+            const fflate = await import('../vendor/fflate.js')
             book = await new MOBI({ unzlib: fflate.unzlibSync }).open(file)
         } else if (isFB2(file)) {
             const { makeFB2 } = await import('./fb2.js')
@@ -276,6 +272,7 @@ class Reader {
         const loc = pageItem
             ? `Page ${pageItem.label}`
             : `Loc ${location.current}`
+        const slider = $('#progress-slider')
         if (tocItem?.href) this.#tocView?.setCurrentHref?.(tocItem.href)
     }
 }

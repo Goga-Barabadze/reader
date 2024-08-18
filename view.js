@@ -182,6 +182,8 @@ export class View extends HTMLElement {
         this.#handleLinks(doc, index)
 
         this.#emit('load', { doc, index })
+
+        this.initTTS()
     }
     #handleLinks(doc, index) {
         const { book } = this
@@ -418,8 +420,19 @@ export class View extends HTMLElement {
         const doc = this.renderer.getContents()[0].doc
         if (this.tts && this.tts.doc === doc) return
         const { TTS } = await import('./tts.js')
-        this.tts = new TTS(doc, textWalker, range =>
-            this.renderer.scrollToAnchor(range, true))
+        this.tts = new TTS(doc, textWalker, range => this.renderer.scrollToAnchor(range, true))
+
+        const text = this.tts.start()
+        let utterance = new SpeechSynthesisUtterance(text);
+        
+        // alert(window.speechSynthesis.getVoices().map(voice => voice.name))
+
+        // const voice = window.speechSynthesis.getVoices().find(voice => voice.voiceURI === "com.apple.voice.compact.en-US.Samantha")
+        // console.log(voice)
+
+        // utterance.voice = voice
+
+        speechSynthesis.speak(utterance);
     }
     startMediaOverlay() {
         const { index } = this.renderer.getContents()[0]
